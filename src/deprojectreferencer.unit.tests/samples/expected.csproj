@@ -2,21 +2,18 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BE8334B8-102E-4B01-BA9C-A5357429C189}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{9DBEF286-A677-4AF8-B58C-4159054981FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>deprojectreferencer</RootNamespace>
-    <AssemblyName>deprojectreferencer</AssemblyName>
+    <RootNamespace>Wonga.Risk.Handlers</RootNamespace>
+    <AssemblyName>Wonga.Risk.Handlers.CalculateCreditLimit</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,10 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -36,27 +31,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\..\lib\NServiceBus\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="Wonga.Common.Data">
+      <HintPath>..\..\..\build\Wonga.Common.Data\Wonga.Common.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Wonga.Common.Utils">
+      <HintPath>..\..\..\build\Wonga.Common.Utils\Wonga.Common.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Wonga.Risk.Adapters">
+      <HintPath>..\..\..\build\Wonga.Risk.Adapters\Wonga.Risk.Adapters.dll</HintPath>
+    </Reference>
+    <Reference Include="Wonga.Risk.CreditBureauLayer">
+      <HintPath>..\..\..\build\Wonga.Risk.CreditBureauLayer\Wonga.Risk.CreditBureauLayer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyReferenceConverter.cs" />
-    <Compile Include="DeProjectReferencer.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="ProjectReference.cs" />
-    <Compile Include="ProjectReferenceDeleter.cs" />
-    <Compile Include="ProjectReferenceExtractor.cs" />
+    <Compile Include="CalculateCreditLimitHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="samples\project.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
