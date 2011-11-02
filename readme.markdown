@@ -16,6 +16,9 @@ Usage
 
 	deprojectreferencer.exe yourprojectfile.csproj
 
+eg:
+
+	find . -name *.csproj -exec deprojectreferencer.exe {} \;
 	
 Disclaimer!
 ----------------------
