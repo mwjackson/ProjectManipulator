@@ -2,7 +2,12 @@ using System.Xml;
 
 namespace deprojectreferencer
 {
-    public class ProjectReferenceDeleter
+    public interface IProjectReferenceDeleter
+    {
+        void Delete(XmlDocument projectFile, XmlNamespaceManager namespaceManager);
+    }
+
+    public class ProjectReferenceDeleter : IProjectReferenceDeleter
     {
         public void Delete(XmlDocument projectFile, XmlNamespaceManager namespaceManager)
         {

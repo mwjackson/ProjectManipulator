@@ -6,25 +6,22 @@ namespace deprojectreferencer
     public class DeProjectReferencer
     {
         private const string MSBUILD_NAMESPACE = "http://schemas.microsoft.com/developer/msbuild/2003";
-        
-        private readonly string _projectFilePath;
-        
-        private readonly ProjectReferenceExtractor _projectReferenceExtractor;
-        private readonly AssemblyReferenceConverter _assemblyReferenceConverter;
-        private readonly ProjectReferenceDeleter _projectReferenceDeleter;
 
-        public DeProjectReferencer(string projectFilePath)
+        private readonly IProjectReferenceExtractor _projectReferenceExtractor;
+        private readonly IAssemblyReferenceConverter _assemblyReferenceConverter;
+        private readonly IProjectReferenceDeleter _projectReferenceDeleter;
+
+        public DeProjectReferencer(IProjectReferenceExtractor projectReferenceExtractor, IAssemblyReferenceConverter assemblyReferenceConverter, IProjectReferenceDeleter projectReferenceDeleter)
         {
-            _projectFilePath = projectFilePath;
-            _projectReferenceExtractor = new ProjectReferenceExtractor();
-            _assemblyReferenceConverter = new AssemblyReferenceConverter(MSBUILD_NAMESPACE);
-            _projectReferenceDeleter = new ProjectReferenceDeleter();
+            _projectReferenceExtractor = projectReferenceExtractor;
+            _assemblyReferenceConverter = assemblyReferenceConverter;
+            _projectReferenceDeleter = projectReferenceDeleter;
         }
 
-        public void Dereference()
+        public void Dereference(string projectFilePath)
         {
             var projectFile = new XmlDocument();
-            projectFile.Load(_projectFilePath);
+            projectFile.Load(projectFilePath);
 
             var namespaceManager = new XmlNamespaceManager(projectFile.NameTable);
             namespaceManager.AddNamespace("msb", MSBUILD_NAMESPACE);
@@ -36,7 +33,7 @@ namespace deprojectreferencer
             _assemblyReferenceConverter.Convert(projectFile, namespaceManager, projectReferences);
             _projectReferenceDeleter.Delete(projectFile, namespaceManager);
 
-            projectFile.Save(_projectFilePath);
+            projectFile.Save(projectFilePath);
         }
     }
 }

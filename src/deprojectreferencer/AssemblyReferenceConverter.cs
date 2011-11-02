@@ -3,7 +3,12 @@ using System.Xml;
 
 namespace deprojectreferencer
 {
-    public class AssemblyReferenceConverter
+    public interface IAssemblyReferenceConverter
+    {
+        void Convert(XmlDocument projectFile, XmlNamespaceManager namespaceManager, IEnumerable<ProjectReference> projectReferences);
+    }
+
+    public class AssemblyReferenceConverter : IAssemblyReferenceConverter
     {
         private readonly string _msbuildNamespace;
 

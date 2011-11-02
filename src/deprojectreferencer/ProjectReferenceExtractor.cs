@@ -4,7 +4,12 @@ using System.Xml;
 
 namespace deprojectreferencer
 {
-    public class ProjectReferenceExtractor
+    public interface IProjectReferenceExtractor
+    {
+        IEnumerable<ProjectReference> Extract(XmlDocument projectFile, XmlNamespaceManager namespaceManager);
+    }
+
+    public class ProjectReferenceExtractor : IProjectReferenceExtractor
     {
         public IEnumerable<ProjectReference> Extract(XmlDocument projectFile, XmlNamespaceManager namespaceManager)
         {
