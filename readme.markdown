@@ -16,7 +16,7 @@ Usage
 
 	deprojectreferencer.exe yourprojectfile.csproj
 
-eg:
+To replace all csproj files in a directory tree:
 
 	find . -name *.csproj -exec deprojectreferencer.exe {} \;
 	
