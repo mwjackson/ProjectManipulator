@@ -50,6 +50,7 @@
     <Compile Include="AssemblyReferenceConverterTests.cs" />
     <Compile Include="CopyLocalManipulatorTests.cs" />
     <Compile Include="DeProjectReferencerTests.cs" />
+    <Compile Include="OutputPathSetterTests.cs" />
     <Compile Include="ProjectReferenceDeleterTests.cs" />
     <Compile Include="ProjectReferenceExtractorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

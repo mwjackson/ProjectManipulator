@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Xml;
 using NUnit.Framework;
 
@@ -24,9 +23,9 @@ namespace deprojectreferencer.unit.tests
         [Test]
         public void Should_add_copy_local_reference_as_a_child_element()
         {
-            XmlNode reference = _projectFile.CreateElement("Reference");
+            XmlNode reference = _projectFile.CreateElement("Reference", _namespaceManager.DefaultNamespace);
 
-            new CopyLocalManipulator(_projectFile).SetFalse(new[] {reference });
+            new CopyLocalManipulator(_namespaceManager).SetFalse(_projectFile, new[] { reference });
 
             Assert.That(reference.FirstChild.Name, Is.EqualTo(@"Private"));
             Assert.That(reference.FirstChild.InnerText, Is.EqualTo(@"False"));
@@ -34,12 +33,12 @@ namespace deprojectreferencer.unit.tests
 
         [Test]
         public void Should_not_add_if_already_exists() {
-            XmlNode reference = _projectFile.CreateElement("Reference");
+            XmlNode reference = _projectFile.CreateElement("Reference", _namespaceManager.DefaultNamespace);
 
-            new CopyLocalManipulator(_projectFile).SetFalse(new[] { reference });
-            new CopyLocalManipulator(_projectFile).SetFalse(new[] { reference });
+            new CopyLocalManipulator(_namespaceManager).SetFalse(_projectFile, new[] { reference });
+            new CopyLocalManipulator(_namespaceManager).SetFalse(_projectFile, new[] { reference });
 
-            var privateNodes = reference.SelectNodes("Private").Cast<XmlNode>();
+            var privateNodes = reference.SelectNodes("Private", _namespaceManager).Cast<XmlNode>();
 
             Assert.That(privateNodes.Count(), Is.EqualTo(1));
         }
@@ -47,12 +46,12 @@ namespace deprojectreferencer.unit.tests
         [Test]
         public void Should_set_false_if_true()
         {
-            XmlNode reference = _projectFile.CreateElement("Reference");
-            var privateNode = _projectFile.CreateElement("Private");
+            XmlNode reference = _projectFile.CreateElement("Reference", _namespaceManager.DefaultNamespace);
+            var privateNode = _projectFile.CreateElement("Private", _namespaceManager.DefaultNamespace);
             privateNode.InnerText = "True";
             reference.AppendChild(privateNode);
 
-            new CopyLocalManipulator(_projectFile).SetFalse(new[] { reference });
+            new CopyLocalManipulator(_namespaceManager).SetFalse(_projectFile, new[] { reference });
 
             Assert.That(reference.FirstChild.Name, Is.EqualTo(@"Private"));
             Assert.That(reference.FirstChild.InnerText, Is.EqualTo(@"False"));
@@ -61,50 +60,18 @@ namespace deprojectreferencer.unit.tests
         [Test]
         public void Should_set_false_for_every_node_in_list()
         {
-            XmlNode reference1 = _projectFile.CreateElement("Reference");
-            XmlNode reference2 = _projectFile.CreateElement("Reference");
-            XmlNode reference3 = _projectFile.CreateElement("Reference");
+            XmlNode reference1 = _projectFile.CreateElement("Reference", _namespaceManager.DefaultNamespace);
+            XmlNode reference2 = _projectFile.CreateElement("Reference", _namespaceManager.DefaultNamespace);
+            XmlNode reference3 = _projectFile.CreateElement("Reference", _namespaceManager.DefaultNamespace);
             var references = new[] {reference1, reference2, reference3};
 
-            new CopyLocalManipulator(_projectFile).SetFalse(references);
+            new CopyLocalManipulator(_namespaceManager).SetFalse(_projectFile, references);
 
             var falsePrivateNodes = references
-                .SelectMany(x => x.SelectNodes("Private").Cast<XmlNode>())
+                .SelectMany(x => x.SelectNodes("Private", _namespaceManager).Cast<XmlNode>())
                 .Where(node => node.InnerText == "False");
 
             Assert.That(falsePrivateNodes.Count(), Is.EqualTo(3));
         }   
-    }
-
-    public class CopyLocalManipulator
-    {
-        private readonly XmlDocument _projectFile;
-
-        public CopyLocalManipulator(XmlDocument projectFile)
-        {
-            _projectFile = projectFile;
-        }
-
-        public void SetFalse(IEnumerable<XmlNode> references)
-        {
-            foreach (var reference in references)
-            {
-                var privateNodes = reference.SelectNodes("Private").Cast<XmlNode>();
-                if (privateNodes.Any())
-                {
-                    Toggle(privateNodes.First());
-                    return;
-                }
-
-                var privateNode = _projectFile.CreateElement("Private");
-                privateNode.InnerText = "False";
-                reference.AppendChild(privateNode);
-            }
-        }
-
-        private void Toggle(XmlNode privateNode)
-        {
-            privateNode.InnerText = "False";
-        }
     }
 }

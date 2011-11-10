@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyReferenceConverter.cs" />
+    <Compile Include="CopyLocalManipulator.cs" />
     <Compile Include="DeProjectReferencer.cs" />
+    <Compile Include="OutputPathSetter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectReference.cs" />
     <Compile Include="ProjectReferenceDeleter.cs" />
