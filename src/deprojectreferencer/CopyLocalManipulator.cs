@@ -6,26 +6,35 @@ namespace deprojectreferencer
 {
     public class CopyLocalManipulator
     {
-        private readonly XmlNamespaceManager _namespaceManager;
+        private readonly string _msBuildNamespace;
 
-        public CopyLocalManipulator(XmlNamespaceManager namespaceManager)
+        public CopyLocalManipulator(string msBuildNamespace)
         {
-            _namespaceManager = namespaceManager;
+            _msBuildNamespace = msBuildNamespace;
         }
 
-        public void SetFalse(XmlDocument projectFile, IEnumerable<XmlNode> references)
+        public void SetFalse(XmlDocument projectFile)
         {
-            var x = projectFile.NamespaceURI;
-            foreach (var reference in references)
+            var namespaceManager = new XmlNamespaceManager(projectFile.NameTable);
+            namespaceManager.AddNamespace("msb", _msBuildNamespace);
+
+            var assemblyReferences = projectFile.SelectNodes("/msb:Project/msb:ItemGroup/msb:Reference", namespaceManager).Cast<XmlNode>();
+            var projectReferences = projectFile.SelectNodes("/msb:Project/msb:ItemGroup/msb:ProjectReference", namespaceManager).Cast<XmlNode>();
+
+            var allReferences = new List<XmlNode>();
+            allReferences.AddRange(assemblyReferences);
+            allReferences.AddRange(projectReferences);
+
+            foreach (var reference in allReferences)
             {
-                var privateNodes = reference.SelectNodes("Private", _namespaceManager).Cast<XmlNode>();
+                var privateNodes = reference.SelectNodes("msb:Private", namespaceManager).Cast<XmlNode>();
                 if (privateNodes.Any())
                 {
                     Toggle(privateNodes.First());
-                    return;
+                    continue;
                 }
 
-                var privateNode = projectFile.CreateElement("Private", _namespaceManager.DefaultNamespace);
+                var privateNode = projectFile.CreateElement("Private", _msBuildNamespace);
                 privateNode.InnerText = "False";
                 reference.AppendChild(privateNode);
             }

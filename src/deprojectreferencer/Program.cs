@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 
 namespace deprojectreferencer
 {
@@ -10,7 +11,12 @@ namespace deprojectreferencer
         {
             try
             {
-                CreateDeProjectReferencer().Dereference(args[0]);
+                //CreateDeProjectReferencer().Dereference(args[0]);
+                var projectPath = args[0];
+                var projectFile = new XmlDocument();
+                projectFile.Load(projectPath);
+                new CopyLocalManipulator(MSBUILD_NAMESPACE).SetFalse(projectFile);
+                projectFile.Save(projectPath);
             }
             catch (Exception e)
             {

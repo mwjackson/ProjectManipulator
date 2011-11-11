@@ -56,6 +56,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="samples\project_with_copylocal_true.csproj">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="samples\project_with_no_project_references.csproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
