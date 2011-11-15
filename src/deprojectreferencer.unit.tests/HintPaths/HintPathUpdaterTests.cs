@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Xml;
+﻿using System.Xml;
 using FakeItEasy;
 using NUnit.Framework;
 using deprojectreferencer.HintPaths;
@@ -28,13 +27,14 @@ namespace deprojectreferencer.unit.tests.HintPaths
         [Test]
         public void Should_update_replace_wonga_hint_path_with_service_directory()
         {
-            var commonPath = @"..\..\..\build\common\Wonga.Common.Data.dll";
+            const string expectedPath = @"..\..\..\build\common\Wonga.Common.Data.dll";
+            A.CallTo(() => _hintPathLookup.For(A<string>.Ignored)).Returns(expectedPath);
 
             var outputProjectFile = new HintPathUpdater(MSBUILD_NAMESPACE, _hintPathLookup).Update(_projectFile);
 
             string updatedPath = outputProjectFile.SelectNodes("/msb:Project/msb:ItemGroup/msb:Reference/msb:HintPath", _namespaceManager)[1].InnerText;
 
-            Assert.That(updatedPath, Is.EqualTo(commonPath));
+            Assert.That(updatedPath, Is.EqualTo(expectedPath));
         }
 
         [Test]
@@ -49,55 +49,11 @@ namespace deprojectreferencer.unit.tests.HintPaths
         }
 
         [Test]
-        public void Should_replace_hint_path_correctly_for_each_common() {
-            const string commonPath = @"..\..\..\build\common";
-
-            var outputProjectFile = new HintPathUpdater(MSBUILD_NAMESPACE, _hintPathLookup).Update(_projectFile);
-
-            string wongaCommonDataPath = outputProjectFile.SelectNodes("/msb:Project/msb:ItemGroup/msb:Reference/msb:HintPath", _namespaceManager)[1].InnerText;
-            string wongaCommonUtilsPath = outputProjectFile.SelectNodes("/msb:Project/msb:ItemGroup/msb:Reference/msb:HintPath", _namespaceManager)[2].InnerText;
-
-            Assert.That(wongaCommonDataPath, Is.StringContaining(commonPath));
-            Assert.That(wongaCommonUtilsPath, Is.StringContaining(commonPath));
-        }
-
-        [Test]
         public void Should_replace_hint_path_for_each_service()
         {
             new HintPathUpdater(MSBUILD_NAMESPACE, _hintPathLookup).Update(_projectFile);
 
             A.CallTo(() => _hintPathLookup.For(A<string>.Ignored)).MustHaveHappened(Repeated.Exactly.Times(2));
-        }
-    }
-
-    public class HintPathUpdater
-    {
-        private readonly string _msbuildNamespace;
-        private readonly IHintPathLookup _hintPathLookup;
-
-        public HintPathUpdater(string msbuildNamespace, IHintPathLookup hintPathLookup)
-        {
-            _msbuildNamespace = msbuildNamespace;
-            _hintPathLookup = hintPathLookup;
-        }
-
-        public XmlDocument Update(XmlDocument projectFile)
-        {
-            var namespaceManager = new XmlNamespaceManager(projectFile.NameTable);
-            namespaceManager.AddNamespace("msb", _msbuildNamespace);
-
-            var hintPaths = projectFile.SelectNodes("/msb:Project/msb:ItemGroup/msb:Reference/msb:HintPath", namespaceManager).Cast<XmlNode>();
-
-            foreach(var hintPath in hintPaths)
-            {
-                var oldPath = hintPath.InnerText;
-                if (oldPath.Contains(@"..\..\..\lib")) continue;
-
-                var newPath = _hintPathLookup.For(oldPath);
-                hintPath.InnerText = newPath;
-            }
-
-            return projectFile;
         }
     }
 }

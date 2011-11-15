@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HintPaths\HintPathUpdater.cs" />
     <Compile Include="ProjectReferences\AssemblyReferenceConverter.cs" />
     <Compile Include="CopyLocal\CopyLocalManipulator.cs" />
     <Compile Include="ProjectReferences\DeProjectReferencer.cs" />
