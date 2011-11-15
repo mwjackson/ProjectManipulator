@@ -40,7 +40,6 @@ namespace deprojectreferencer.unit.tests.ProjectReferences
         [Test]
         public void Deprojectreferencing_should_extract_the_project_references()
         {
-
             new DeProjectReferencer(_projectReferenceExtractor, _assemblyReferenceConverter, _projectReferenceDeleter).Dereference(@"samples\acceptance.csproj");
 
             A.CallTo(() => _projectReferenceExtractor.Extract(A<XmlDocument>.Ignored, A<XmlNamespaceManager>.Ignored)).MustHaveHappened();

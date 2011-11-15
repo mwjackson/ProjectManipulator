@@ -2,7 +2,12 @@ using System.IO;
 
 namespace deprojectreferencer.HintPaths
 {
-    public class HintPathLookup
+    public interface IHintPathLookup
+    {
+        string For(string oldPath);
+    }
+
+    public class HintPathLookup : IHintPathLookup
     {
         public string For(string oldPath)
         {
