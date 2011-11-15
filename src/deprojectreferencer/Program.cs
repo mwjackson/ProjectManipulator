@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 namespace deprojectreferencer
 {
@@ -24,7 +25,7 @@ namespace deprojectreferencer
 
         private static void PrintUsage()
         {
-            Console.WriteLine(File.ReadAllText("readme.txt"));
+            Console.WriteLine(File.ReadAllText(string.Format("{0}\readme.txt", Assembly.GetExecutingAssembly().Location)));
         }
     }
 }

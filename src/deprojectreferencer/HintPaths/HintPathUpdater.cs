@@ -14,8 +14,11 @@ namespace deprojectreferencer.HintPaths
             _hintPathLookup = hintPathLookup;
         }
 
-        public XmlDocument Update(XmlDocument projectFile)
+        public XmlDocument Update(string projectPath)
         {
+            var projectFile = new XmlDocument();
+            projectFile.Load(projectPath);
+
             var namespaceManager = new XmlNamespaceManager(projectFile.NameTable);
             namespaceManager.AddNamespace("msb", _msbuildNamespace);
 
@@ -26,10 +29,11 @@ namespace deprojectreferencer.HintPaths
                 var oldPath = hintPath.InnerText;
                 if (oldPath.Contains(@"..\..\..\lib")) continue;
 
-                var newPath = _hintPathLookup.For(oldPath);
+                var newPath = _hintPathLookup.For(oldPath, projectPath);
                 hintPath.InnerText = newPath;
             }
 
+            projectFile.Save(projectPath);
             return projectFile;
         }
     }
