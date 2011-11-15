@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Xml;
 using NUnit.Framework;
+using deprojectreferencer.CopyLocal;
 
-namespace deprojectreferencer.unit.tests
+namespace deprojectreferencer.unit.tests.CopyLocal
 {
     public class CopyLocalManipulatorTests
     {

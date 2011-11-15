@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace deprojectreferencer
+namespace deprojectreferencer.ProjectReferences
 {
     public interface IAssemblyReferenceConverter
     {

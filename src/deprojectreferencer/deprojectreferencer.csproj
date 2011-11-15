@@ -45,14 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyReferenceConverter.cs" />
-    <Compile Include="CopyLocalManipulator.cs" />
-    <Compile Include="DeProjectReferencer.cs" />
-    <Compile Include="OutputPathSetter.cs" />
+    <Compile Include="ProjectReferences\AssemblyReferenceConverter.cs" />
+    <Compile Include="CopyLocal\CopyLocalManipulator.cs" />
+    <Compile Include="ProjectReferences\DeProjectReferencer.cs" />
+    <Compile Include="HintPaths\HintPathLookup.cs" />
+    <Compile Include="OutputPaths\OutputPathSetter.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectReference.cs" />
-    <Compile Include="ProjectReferenceDeleter.cs" />
-    <Compile Include="ProjectReferenceExtractor.cs" />
+    <Compile Include="ProjectReferences\ProjectReference.cs" />
+    <Compile Include="ProjectReferences\ProjectReferenceDeleter.cs" />
+    <Compile Include="ProjectReferences\ProjectReferenceExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +61,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

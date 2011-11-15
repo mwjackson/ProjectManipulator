@@ -1,6 +1,6 @@
 using System.Xml;
 
-namespace deprojectreferencer
+namespace deprojectreferencer.ProjectReferences
 {
     public interface IProjectReferenceDeleter
     {

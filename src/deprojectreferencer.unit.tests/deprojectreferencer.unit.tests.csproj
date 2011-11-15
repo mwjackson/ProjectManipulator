@@ -47,12 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyReferenceConverterTests.cs" />
-    <Compile Include="CopyLocalManipulatorTests.cs" />
-    <Compile Include="DeProjectReferencerTests.cs" />
-    <Compile Include="OutputPathSetterTests.cs" />
-    <Compile Include="ProjectReferenceDeleterTests.cs" />
-    <Compile Include="ProjectReferenceExtractorTests.cs" />
+    <Compile Include="ProjectReferences\AssemblyReferenceConverterTests.cs" />
+    <Compile Include="CopyLocal\CopyLocalManipulatorTests.cs" />
+    <Compile Include="ProjectReferences\DeProjectReferencerTests.cs" />
+    <Compile Include="HintPaths\HintPathLookupTests.cs" />
+    <Compile Include="HintPaths\HintPathUpdaterTests.cs" />
+    <Compile Include="OutputPaths\OutputPathSetterTests.cs" />
+    <Compile Include="ProjectReferences\ProjectReferenceDeleterTests.cs" />
+    <Compile Include="ProjectReferences\ProjectReferenceExtractorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

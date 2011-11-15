@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Xml;
 
-namespace deprojectreferencer
+namespace deprojectreferencer.ProjectReferences
 {
     public class DeProjectReferencer
     {

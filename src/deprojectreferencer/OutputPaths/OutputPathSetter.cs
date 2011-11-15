@@ -1,6 +1,6 @@
 using System.Xml;
 
-namespace deprojectreferencer
+namespace deprojectreferencer.OutputPaths
 {
     public class OutputPathSetter
     {

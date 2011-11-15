@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
-namespace deprojectreferencer
+namespace deprojectreferencer.ProjectReferences
 {
     public interface IProjectReferenceExtractor
     {

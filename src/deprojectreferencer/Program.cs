@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Xml;
+using deprojectreferencer.CopyLocal;
+using deprojectreferencer.ProjectReferences;
 
 namespace deprojectreferencer
 {

@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using System.Xml;
 using NUnit.Framework;
+using deprojectreferencer.ProjectReferences;
 
-namespace deprojectreferencer.unit.tests
+namespace deprojectreferencer.unit.tests.ProjectReferences
 {
     [TestFixture]
     public class AssemblyReferenceConverterTests
