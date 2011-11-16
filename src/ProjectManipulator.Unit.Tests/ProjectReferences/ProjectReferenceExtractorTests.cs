@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Xml;
 using NUnit.Framework;
-using deprojectreferencer.ProjectReferences;
+using ProjectManipulator.ProjectReferences;
 
-namespace deprojectreferencer.unit.tests.ProjectReferences
+namespace ProjectManipulator.Unit.Tests.ProjectReferences
 {
     [TestFixture]
     public class ProjectReferenceExtractorTests

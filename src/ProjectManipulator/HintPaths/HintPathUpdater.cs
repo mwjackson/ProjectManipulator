@@ -1,7 +1,9 @@
+using System;
+using System.Configuration;
 using System.Linq;
 using System.Xml;
 
-namespace deprojectreferencer.HintPaths
+namespace ProjectManipulator.HintPaths
 {
     public class HintPathUpdater
     {
@@ -27,14 +29,26 @@ namespace deprojectreferencer.HintPaths
             foreach(var hintPath in hintPaths)
             {
                 var oldPath = hintPath.InnerText;
+                if (string.IsNullOrEmpty(oldPath)) continue;
                 if (oldPath.Contains(@"..\..\..\lib")) continue;
 
                 var newPath = _hintPathLookup.For(oldPath, projectPath);
                 hintPath.InnerText = newPath;
+
+                Log(oldPath, newPath);
             }
 
             projectFile.Save(projectPath);
             return projectFile;
+        }
+
+        private void Log(string oldPath, string newPath)
+        {
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["debug"]))
+            {
+                Console.WriteLine("OldPath: {0}", oldPath);
+                Console.WriteLine("NewPath: {0}", newPath);
+            }
         }
     }
 }

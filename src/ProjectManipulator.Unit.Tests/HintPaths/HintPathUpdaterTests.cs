@@ -1,9 +1,9 @@
 ﻿using System.Xml;
 using FakeItEasy;
 using NUnit.Framework;
-using deprojectreferencer.HintPaths;
+using ProjectManipulator.HintPaths;
 
-namespace deprojectreferencer.unit.tests.HintPaths
+namespace ProjectManipulator.Unit.Tests.HintPaths
 {
     public class HintPathUpdaterTests
     {

@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace deprojectreferencer.ProjectReferences
+namespace ProjectManipulator.ProjectReferences
 {
     public class ProjectReference
     {

@@ -8,8 +8,8 @@
     <ProjectGuid>{BE8334B8-102E-4B01-BA9C-A5357429C189}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>deprojectreferencer</RootNamespace>
-    <AssemblyName>deprojectreferencer</AssemblyName>
+    <RootNamespace>ProjectManipulator</RootNamespace>
+    <AssemblyName>ProjectManipulator</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HintPaths\HintPathUpdater.cs" />
+    <Compile Include="ProjectManipulator.cs" />
     <Compile Include="ProjectReferences\AssemblyReferenceConverter.cs" />
     <Compile Include="CopyLocal\CopyLocalManipulator.cs" />
     <Compile Include="ProjectReferences\DeProjectReferencer.cs" />

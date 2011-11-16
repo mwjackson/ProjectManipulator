@@ -1,11 +1,11 @@
 using System;
 using System.IO;
 using System.Xml;
-using deprojectreferencer.CopyLocal;
-using deprojectreferencer.HintPaths;
-using deprojectreferencer.ProjectReferences;
+using ProjectManipulator.CopyLocal;
+using ProjectManipulator.HintPaths;
+using ProjectManipulator.ProjectReferences;
 
-namespace deprojectreferencer
+namespace ProjectManipulator
 {
     internal class ProjectManipulator
     {
@@ -13,12 +13,10 @@ namespace deprojectreferencer
 
         public void Go(params string[] args)
         {
-            if (!File.Exists(args[1])) ThrowArgumentException(args);
-
             var projectPath = args[1];
-            var projectFile = new XmlDocument();
-            projectFile.Load(projectPath);
+            if (!File.Exists(projectPath)) ThrowArgumentException(args);
             Console.WriteLine(projectPath);
+
             switch(args[0])
             {
                 case "/p":
@@ -28,6 +26,8 @@ namespace deprojectreferencer
                 }
                 case "/cl":
                 {
+                    var projectFile = new XmlDocument();
+                    projectFile.Load(projectPath);
                     new CopyLocalManipulator(MSBUILD_NAMESPACE).SetFalse(projectFile);
                     projectFile.Save(projectPath); 
                     break;

@@ -8,8 +8,8 @@
     <ProjectGuid>{D80ADCCA-83E8-420F-8D14-DEA2F20F11DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>deprojectreferencer.unit.tests</RootNamespace>
-    <AssemblyName>deprojectreferencer.unit.tests</AssemblyName>
+    <RootNamespace>ProjectManipulator.Unit.Tests</RootNamespace>
+    <AssemblyName>ProjectManipulator.Unit.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -77,9 +77,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\deprojectreferencer\deprojectreferencer.csproj">
+    <ProjectReference Include="..\ProjectManipulator\ProjectManipulator.csproj">
       <Project>{BE8334B8-102E-4B01-BA9C-A5357429C189}</Project>
-      <Name>deprojectreferencer</Name>
+      <Name>ProjectManipulator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

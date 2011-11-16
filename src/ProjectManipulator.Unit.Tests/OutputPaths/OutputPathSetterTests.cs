@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Xml;
 using NUnit.Framework;
-using deprojectreferencer.OutputPaths;
+using ProjectManipulator.OutputPaths;
 
-namespace deprojectreferencer.unit.tests.OutputPaths
+namespace ProjectManipulator.Unit.Tests.OutputPaths
 {
     public class OutputPathSetterTests
     {
