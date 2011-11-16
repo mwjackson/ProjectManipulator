@@ -7,8 +7,8 @@ Can manipulate project files to in an effort to bulk update an entire directory 
 
 to assembly (weak) references:
 
-    <Reference Include="assembly.name">
-      <HintPath>..\path\to\assembly.dll</HintPath>
+	<Reference Include="assembly.name">
+		<HintPath>..\path\to\assembly.dll</HintPath>
     </Reference>
 
 Usage
@@ -17,14 +17,17 @@ Usage
 	ProjectManipulator.exe switch filepath
 
 Switch:
+
 * /p - Replace all project references (<ProjectReference>) with assembly/weak (<Reference>) references
 * /cl - Set CopyLocal (<private>) to false for all references
 * /hp - Update reference hint paths (<HintPath>) to match some desired structure
 
 Filepath:
+
 * The path of the csproj file to update.
 
 Eg.
+	
 	ProjectManipulator.exe /cl myProject.csproj
 
 Bulk Usage
