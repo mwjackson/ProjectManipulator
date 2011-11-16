@@ -65,8 +65,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="readme.markdown">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="..\..\readme.markdown">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
