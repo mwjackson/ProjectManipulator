@@ -25,7 +25,7 @@ namespace ProjectManipulator
 
         private static void PrintUsage()
         {
-            Console.WriteLine(File.ReadAllText(string.Format("{0}\readme.txt", Assembly.GetExecutingAssembly().Location)));
+            Console.WriteLine(File.ReadAllText(string.Format(@"{0}\readme.markdown", new FileInfo(Assembly.GetExecutingAssembly().Location).Directory.FullName)));
         }
     }
 }

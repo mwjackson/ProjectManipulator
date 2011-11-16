@@ -13,6 +13,8 @@ namespace ProjectManipulator
 
         public void Go(params string[] args)
         {
+            if (args.Length == 0) ThrowArgumentException(args);
+
             var projectPath = args[1];
             if (!File.Exists(projectPath)) ThrowArgumentException(args);
             Console.WriteLine(projectPath);
