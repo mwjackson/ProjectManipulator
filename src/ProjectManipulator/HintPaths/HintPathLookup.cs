@@ -46,8 +46,8 @@ namespace ProjectManipulator.HintPaths
             if (oldPath.Contains("Wonga.ColdStorage")) return string.Format(@"{1}\components\Wonga.ColdStorage\{0}", fileName, baseBuildPath);
             if (oldPath.Contains("Wonga.Email")) return string.Format(@"{1}\components\Wonga.Email\{0}", fileName, baseBuildPath);
             if (oldPath.Contains("Wonga.Equifax")) return string.Format(@"{1}\components\Wonga.Equifax\{0}", fileName, baseBuildPath);
-            if (oldPath.Contains("Wonga.Experian")) return string.Format(@"{1}\components\Wonga.Experian\{0}", fileName, baseBuildPath);
             if (oldPath.Contains("Wonga.ExperianBulk")) return string.Format(@"{1}\components\Wonga.ExperianBulk\{0}", fileName, baseBuildPath);
+            if (oldPath.Contains("Wonga.Experian")) return string.Format(@"{1}\components\Wonga.Experian\{0}", fileName, baseBuildPath);
             if (oldPath.Contains("Wonga.FileStorage")) return string.Format(@"{1}\components\Wonga.FileStorage\{0}", fileName, baseBuildPath);
             if (oldPath.Contains("Wonga.HPI")) return string.Format(@"{1}\components\Wonga.HPI\{0}", fileName, baseBuildPath);
             if (oldPath.Contains("Wonga.Iovation")) return string.Format(@"{1}\components\Wonga.Iovation\{0}", fileName, baseBuildPath);
