@@ -21,12 +21,12 @@ namespace ProjectManipulator
 
             switch(args[0])
             {
-                case "/p":
+                case "-p":
                 {
                     CreateDeProjectReferencer().Dereference(projectPath); 
                     break;
                 }
-                case "/cl":
+                case "-cl":
                 {
                     var projectFile = new XmlDocument();
                     projectFile.Load(projectPath);
@@ -34,7 +34,7 @@ namespace ProjectManipulator
                     projectFile.Save(projectPath); 
                     break;
                 }
-                case "/hp":
+                case "-hp":
                 {
                     new HintPathUpdater(MSBUILD_NAMESPACE, new HintPathLookup()).Update(projectPath);
                     break;

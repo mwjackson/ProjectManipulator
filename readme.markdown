@@ -18,9 +18,9 @@ Usage
 
 Switch:
 
-* /p - Replace all project references (<ProjectReference>) with assembly/weak (<Reference>) references
-* /cl - Set CopyLocal (<private>) to false for all references
-* /hp - Update reference hint paths (<HintPath>) to match some desired structure
+* -p - Replace all project references (<ProjectReference>) with assembly/weak (<Reference>) references
+* -cl - Set CopyLocal (<private>) to false for all references
+* -hp - Update reference hint paths (<HintPath>) to match some desired structure
 
 Filepath:
 
@@ -28,14 +28,14 @@ Filepath:
 
 Eg.
 	
-	ProjectManipulator.exe /cl myProject.csproj
+	ProjectManipulator.exe -cl myProject.csproj
 
 Bulk Usage
 ----------------------
 
 To replace all csproj files in a directory tree:
 
-	find src/ -name *.csproj -exec ProjectManipulator.exe /cl {} \;
+	find src/ -name *.csproj -exec ProjectManipulator.exe -cl {} \;
 	
 Disclaimer!
 ----------------------
