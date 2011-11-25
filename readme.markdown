@@ -21,6 +21,8 @@ Switch:
 * -p - Replace all project references (<ProjectReference>) with assembly/weak (<Reference>) references
 * -cl - Set CopyLocal (<private>) to false for all references
 * -hp - Update reference hint paths (<HintPath>) to match some desired structure
+* -tp - Update build target paths (<Project>) to match some desired structure
+* -sp - Update solution item target paths (<Project>) to match some desired structure
 
 Filepath:
 

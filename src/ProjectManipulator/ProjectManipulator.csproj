@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HintPaths\HintPathUpdater.cs" />
+    <Compile Include="HintPaths\SolutionItemPathUpdater.cs" />
+    <Compile Include="HintPaths\TargetPathUpdater.cs" />
     <Compile Include="ProjectManipulator.cs" />
     <Compile Include="ProjectReferences\AssemblyReferenceConverter.cs" />
     <Compile Include="CopyLocal\CopyLocalManipulator.cs" />

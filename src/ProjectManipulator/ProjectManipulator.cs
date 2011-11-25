@@ -38,6 +38,16 @@ namespace ProjectManipulator
                 {
                     new HintPathUpdater(MSBUILD_NAMESPACE, new HintPathLookup()).Update(projectPath);
                     break;
+                }                
+                case "-tp":
+                {
+                    new TargetPathUpdater(MSBUILD_NAMESPACE).Update(projectPath);
+                    break;
+                }
+                case "-sp":
+                {
+                    new SolutionItemPathUpdater(MSBUILD_NAMESPACE).Update(projectPath);
+                    break;
                 }
                 default:
                 {
